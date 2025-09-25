@@ -1,0 +1,445 @@
+/* 음악 끄기 버튼 스타일 (하단 고정, 파스텔톤, 심플) */
+.audio-toggle-btn {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%);
+    background: var(--accent-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 24px;
+    padding: 10px 28px;
+    font-size: 1em;
+    font-family: var(--font-serif);
+    box-shadow: 0 2px 8px rgba(182,166,202,0.12);
+    cursor: pointer;
+    z-index: 99999;
+    opacity: 0.92;
+    transition: background 0.2s, color 0.2s;
+}
+.audio-toggle-btn:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+/* 주소 정보 스타일 - 파스텔톤, 예쁜 글씨체 */
+.address-info {
+    margin: 32px auto 0 auto;
+    text-align: center;
+    font-family: var(--font-serif);
+}
+.address-ko {
+    font-size: 1.15em;
+    color: var(--primary-color);
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+}
+.address-en {
+    font-size: 1em;
+    color: var(--accent-color);
+    opacity: 0.85;
+    letter-spacing: 0.01em;
+}
+
+/* Falling Stars 전체 영역 적용 */
+.falling-stars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 99999;
+}
+
+/* 기본 스타일 및 모바일 최적화 */
+:root {
+    /* 파스텔톤 컬러 */
+    --primary-color: #B6A6CA;   /* 파스텔 라벤더 */
+    --secondary-color: #F6F5F3; /* 파스텔 화이트베이지 */
+    --accent-color: #F7CAC9;    /* 파스텔 핑크 */
+    --text-color: #6D6A75;      /* 부드러운 그레이 */
+    --font-serif: 'Noto Serif KR', 'Nanum Myeongjo', 'Georgia', serif;
+    --font-sans: 'Noto Serif KR', 'Nanum Myeongjo', 'Arial', sans-serif;
+}
+
+/* 인트로 애니메이션 스타일 */
+.intro-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 9999;
+    animation: fadeOut 0.5s ease-in-out 5.8s forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; visibility: visible; }
+    to   { opacity: 0; visibility: hidden; }
+}
+
+/* 배경 이미지 */
+.background-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 100%;
+    z-index: 1;
+}
+.background-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: zoomIn 6s ease-out forwards;
+}
+@keyframes zoomIn {
+    from { transform: scale(1.2); filter: blur(2px); }
+    to   { transform: scale(1);   filter: blur(0); }
+}
+
+/* 오버레이 컨테이너 */
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 40;
+    opacity: 0.6;
+}
+.black-overlay {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    position: relative;
+    overflow: hidden;
+}
+
+/* SVG 래퍼 */
+.svg-wrapper {
+    width: 500px !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.svg-wrapper svg { height: auto; }
+
+/* SVG 경로 스타일 */
+.letter-path {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 1;
+}
+.guide-path {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* 모바일 SVG 크기 조정 */
+@media (max-width: 480px) {
+    .svg-wrapper { width: 350px !important; }
+    .background-image { width: 100%; }
+}
+
+/* body 스타일 (통합) */
+body {
+    font-family: var(--font-serif);
+    line-height: 1.6;
+    margin: 0 auto;
+    padding: 0;
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+    max-width: 480px; /* 모바일 최대 너비 */
+    overflow-x: hidden;
+}
+
+/* Falling Stars Animation */
+.star {
+    position: absolute;
+    top: -20px;
+    color: #fff;
+    animation: animate 5s linear forwards;
+    pointer-events: none;
+    z-index: 10000;
+}
+.star::before {
+    content: "\f005";
+    font-family: "FontAwesome";
+}
+@keyframes animate {
+    0%   { top: -20px; opacity: 1;   transform: rotate(0deg); }
+    100% { top: 100vh; opacity: 0.2; transform: rotate(360deg); }
+}
+
+section {
+    padding: 40px 20px;
+    text-align: center;
+}
+.section-title {
+    font-family: var(--font-serif);
+    font-size: 1.8em;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+}
+.section-title::after {
+    content: '';
+    display: block;
+    width: 50%;
+    margin: 5px auto 0;
+    height: 1px;
+    background: var(--primary-color);
+}
+
+/* 히어로 영역 */
+.hero-section {
+    position: relative;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    opacity: 0;
+    animation: fadeInHero 1s ease-in-out 6.3s forwards;
+}
+@keyframes fadeInHero {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.hero-image {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url('../images/img10.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+.hero-text {
+    padding: 30px 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    width: 100%;
+    box-sizing: border-box;
+}
+.hero-text .couple-name {
+    font-family: var(--font-serif);
+    font-size: 2.5em;
+    margin-bottom: 5px;
+}
+.hero-text .greeting {
+    font-size: 1.1em;
+    font-weight: 300;
+}
+
+/* 공통 배경색 적용 */
+.about-section,
+.photo-section,
+.photo-fixed,
+.gallery-section {
+    background-color: var(--secondary-color);
+}
+
+/* 소개 영역 */
+.about-text {
+    font-family: var(--font-serif);
+    font-size: 1.1em;
+    line-height: 2;
+    margin: 0 auto;
+    max-width: 80%;
+}
+
+/* 사진 영역 */
+.photo-section {
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.photo-fixed {
+    width: 90vw;
+    max-width: 480px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+.photo-fixed img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* 날짜 및 달력 영역 */
+.calendar-section { padding-bottom: 50px; }
+.wedding-date, .wedding-day {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+#calendar table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: var(--font-sans);
+}
+#calendar th, #calendar td {
+    padding: 8px 0;
+    text-align: center;
+    border: none;
+}
+#calendar th {
+    color: var(--primary-color);
+    font-weight: normal;
+}
+#calendar td {
+    font-size: 1.1em;
+    color: #666;
+}
+.wedding-day-highlight {
+    background-color: var(--primary-color);
+    color: white !important;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 30px; height: 30px;
+    display: inline-block;
+    line-height: 30px;
+    box-sizing: border-box;
+}
+
+/* 갤러리 영역 */
+.gallery-section { padding-top: 50px; }
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+}
+.gallery-item {
+    width: 100%;
+    padding-bottom: 100%;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: transform 0.3s, opacity 0.8s;
+}
+.gallery-item.active {
+    opacity: 1;
+    transform: translateY(0);
+    animation: galleryFadeUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+.gallery-item.hovered {
+    transform: scale(1.06) translateY(-4px);
+    box-shadow: 0 4px 16px rgba(182,166,202,0.18);
+    z-index: 2;
+}
+
+
+@keyframes galleryFadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.gallery-item:hover { transform: scale(0.98); }
+
+/* 지도 영역 */
+.map-section { padding-bottom: 50px; }
+#map {
+    width: 100%;
+    height: 350px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    overflow: auto;
+    background-color: rgba(182, 166, 202, 0.85);
+    align-items: center;
+    justify-content: center;
+}
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 90%;
+    max-width: 90vh;
+    max-height: 90vh;
+    object-fit: contain;
+}
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 1001;
+}
+.close-btn:hover,
+.close-btn:focus {
+    color: #bbb;
+    text-decoration: none;
+}
+
+/* 모바일 반응형 최적화 */
+@media (max-width: 480px) {
+    body {
+        max-width: 100vw;
+        font-size: 1em;
+        padding: 0;
+    }
+    section { padding: 24px 8px; }
+    .section-title {
+        font-size: 1.3em;
+        margin-bottom: 18px;
+    }
+    .hero-section { height: 60vh; }
+    .hero-text { padding: 18px 8px; }
+    .hero-text .couple-name { font-size: 1.5em; }
+    .about-text {
+        font-size: 1em;
+        max-width: 98%;
+    }
+    .photo-fixed {
+        max-width: 98vw;
+        border-radius: 10px;
+    }
+    .gallery-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2px;
+    }
+    #map { height: 220px; }
+}

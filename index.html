@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모바일 청첩장</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- 손글씨 느낌 구글 웹폰트 추가 -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <!-- FontAwesome CDN for Falling Stars -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- 음악 끄기 버튼 (모바일 친화적, 하단 고정) -->
+    <button id="audio-toggle-btn" class="audio-toggle-btn">음악 끄기</button>
+
+    <!-- 오디오 자동 재생 (모바일 친화적, 반복재생) -->
+    <audio id="wedding-audio" src="assets/audio/audio1.mp3" preload="auto" loop autoplay></audio>
+    <!-- Falling Stars Animation (최상위 고정 컨테이너) -->
+    <div class="falling-stars-container"></div>
+            <script>
+            function stars() {
+                let container = document.querySelector('.falling-stars-container');
+                let e = document.createElement("div");
+                e.setAttribute("class", "star");
+                e.style.left = Math.random() * window.innerWidth + "px";
+                let size = Math.random() * 12;
+                let duration = Math.random() * 3;
+                e.style.fontSize = 12 + size + "px";
+                e.style.animationDuration = 2 + duration + "s";
+                container.appendChild(e);
+                setTimeout(function () {
+                    if (container.contains(e)) container.removeChild(e);
+                }, 5000);
+            }
+            setInterval(function () {
+                stars();
+            }, 50);
+            </script>
+        <!-- 인트로 애니메이션 섹션 -->
+    <div class="intro-container">
+        <!-- 배경 이미지 레이어 -->
+        <div class="background-image">
+            <img src="assets/images/img10.jpg" alt="웨딩사진">
+        </div>
+        
+        <!-- 검은색 오버레이 + SVG 레이어 -->
+        <div class="overlay-container">
+                        <div class="black-overlay">
+                                <div class="svg-wrapper">
+                                        <svg id="wedding-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 150">
+                                                <text id="wedding-text" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
+                                                        font-family="'Dancing Script', cursive" font-size="80" fill="#fff" stroke="#fff" stroke-width="2" opacity="0">
+                                                        Wedding
+                                                </text>
+                                        </svg>
+                                </div>
+                        </div>
+        </div>
+    </div>
+
+    <section class="hero-section">
+        <div class="hero-image"></div>
+        <div class="hero-text">
+            <h1 class="couple-name">이몽룡 💖 성춘향</h1>
+            <p class="greeting">저희 결혼합니다</p>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <h2 class="section-title">초대합니다</h2>
+        <p class="about-text">
+            새로운 시작을 축복해주신다면<br>
+            더 없는 기쁨으로 간직하겠습니다.<br>
+            아름다운 가정을 꾸릴 수 있도록<br>
+            따뜻한 응원과 축복 부탁드립니다.
+        </p>
+    </section>
+
+    <section class="photo-section">
+        <div class="photo-fixed">
+            <img src="assets/images/img11.jpg" alt="웨딩 포토" />
+        </div>
+    </section>
+
+    <section class="calendar-section">
+        <h2 class="section-title">Wedding Day</h2>
+        <div class="wedding-date">2025년 09월 25일</div>
+        <div class="wedding-day">목요일 오후 12시 00분</div>
+        <div id="calendar"></div>
+    </section>
+
+    <section class="gallery-section">
+        <h2 class="section-title">갤러리</h2>
+        <div class="gallery-container">
+            <div class="gallery-item" data-img-src="assets/images/img1.jpg" style="background-image: url('assets/images/img1.jpg');"></div>
+            <div class="gallery-item" data-img-src="assets/images/img2.jpg" style="background-image: url('assets/images/img2.jpg');"></div>
+            <div class="gallery-item" data-img-src="assets/images/img3.jpg" style="background-image: url('assets/images/img3.jpg');"></div>
+            <div class="gallery-item" data-img-src="assets/images/img4.jpg" style="background-image: url('assets/images/img4.jpg');"></div>
+            <div class="gallery-item" data-img-src="assets/images/img5.jpg" style="background-image: url('assets/images/img5.jpg');"></div>
+            <div class="gallery-item" data-img-src="assets/images/img6.jpg" style="background-image: url('assets/images/img6.jpg');"></div>
+            <div class="gallery-item" data-img-src="assets/images/img7.jpg" style="background-image: url('assets/images/img7.jpg');"></div>
+            <div class="gallery-item" data-img-src="assets/images/img8.jpg" style="background-image: url('assets/images/img8.jpg');"></div>
+            <div class="gallery-item" data-img-src="assets/images/img9.jpg" style="background-image: url('assets/images/img9.jpg');"></div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <h2 class="section-title">오시는 길</h2>
+        <div id="map" style="width:100%;height:350px;"></div>
+        <div class="address-info">
+            <p class="address-ko">인천광역시 미추홀구 주안동 77-3 지웰에스테이트</p>
+            <p class="address-en">Gwell Estate, 77-3 Juan-dong, Michuhol-gu, Incheon, South Korea</p>
+        </div>
+    </section>
+
+    <div id="imageModal" class="modal">
+        <span class="close-btn">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+    
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e085a2909008f1d7bd3c1410a210cf18"></script>
+    <script src="assets/js/script.js"></script>
+<script>
+// 음악 끄기 버튼 기능
+const audio = document.getElementById('wedding-audio');
+const btn = document.getElementById('audio-toggle-btn');
+btn.addEventListener('click', function() {
+    if (!audio.paused) {
+        audio.pause();
+        btn.textContent = '음악 켜기';
+    } else {
+        audio.play();
+        btn.textContent = '음악 끄기';
+    }
+});
+</script>
+
+</body>
+</html>
